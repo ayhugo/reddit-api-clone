@@ -3,14 +3,12 @@ const mongoose = require('mongoose');
 
 const postSchema = mongoose.Schema({
     title: { type: String, required: true },
-    link: String,
-    text: String,
+    text: {type: String, required: true },
     isDeleted: { type: Boolean, default: false},
     createdAt: { type: Date, default: Date.now },
-    _creator: { type: Schema.ObjectId, ref: 'user'}
+    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
 
 });
 
-// Write some encrption for Password
 
 module.exports = mongoose.model('Post', postSchema);
