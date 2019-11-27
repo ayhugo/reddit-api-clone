@@ -1,15 +1,12 @@
-import db from './../models';
+const User = require("../models/user");
 
-const userController = {};
+const bcrypt = require("bcrypt");
 
-userController.post = (req, res) => {
-  const { username, password } = req.body;
-  console.log(req.body);
+exports.createUser = (req, res, next) => {
   // Validation
-
-  const user = new db.User({
-    username,
-    password
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password
   });
 
   user.save().then((newUser) => {
@@ -22,6 +19,5 @@ userController.post = (req, res) => {
       message: err,
     });
   });
-}
+};
 
-export default userController;

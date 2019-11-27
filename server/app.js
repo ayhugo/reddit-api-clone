@@ -1,18 +1,23 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const path = require("path");
 
-import routes from './routes';
 
-mongoose.connect('mongodb://localhost:27017/redditclone', () => {
-  console.log('Contected to mongodb...');
+const userRoutes = require("./routes/user");
+
+mongoose.connect('mongodb://localhost:27017/redditclone').then(() => {
+  console.log('Connected to mongodb...');
+}).catch(()=> {
+  console.log("connection failed");
 });
 
 const app = express();
 
 // Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/api', routes);
+app.use('/api/user', userRoutes);
 
-export default app;
+module.exports = app;
