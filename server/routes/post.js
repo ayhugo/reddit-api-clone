@@ -1,5 +1,6 @@
 const express = require("express");
 
+
 const PostController = require('../controllers/post');
 
 
@@ -13,5 +14,6 @@ router.get("/getposts", PostController.getPosts);
 
 //upvote post
 router.put('/:id/upvote', PostController.vote);
+
 
 module.exports = router;

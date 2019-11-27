@@ -12,7 +12,7 @@ const postSchema = mongoose.Schema({
 });
 
 postSchema.methods.upvote = function(cb) {
-    this.upvote += 1;
+    this.upvotes += 1;
     this.save(cb);
 }
 

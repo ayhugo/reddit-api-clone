@@ -41,8 +41,12 @@ exports.getPosts = (req, res, next) => {
 
 //bad practice to use req.body.userID but just for testing
 exports.vote = (req, res, next) => {
-  let votes = req.body.upvotes;
-  votes += 1;
+  let votes = parseInt(req.body.upvotes);
+  if(req.body.action === 'i') {
+    votes += 1;
+  }else if (req.body.action === 'd') {
+    votes -= 1;
+  }
   const post = new Post({
     _id: req.body.id,
     title: req.body.title,
@@ -52,9 +56,9 @@ exports.vote = (req, res, next) => {
   });
   Post.updateOne({ _id: req.params.id, creator: req.body.userId }, post).then(result => {
     if (result.n > 0) {
-      res.status(200).json({ message: "upvote successful!" });
+      res.status(200).json({ message: "post update successful!" });
     } else {
-      res.status(401).json({ message: "Not successful upvoting" });
+      res.status(401).json({ message: "Not successful updating" });
     }
 
   })
