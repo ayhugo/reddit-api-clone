@@ -4,6 +4,7 @@
 - [x] create user w/ encryption
 - [x] create post 
 - [x] fetch all posts
+- [x] upvote a post
 - [ ] delete post 
 - [ ] edit post 
 - [ ] create comment 

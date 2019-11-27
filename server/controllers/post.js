@@ -39,3 +39,29 @@ exports.getPosts = (req, res, next) => {
   });
 };
 
+//bad practice to use req.body.userID but just for testing
+exports.vote = (req, res, next) => {
+  let votes = req.body.upvotes;
+  votes += 1;
+  const post = new Post({
+    _id: req.body.id,
+    title: req.body.title,
+    text: req.body.text,
+    upvotes: votes,
+    creator: req.body.userId
+  });
+  Post.updateOne({ _id: req.params.id, creator: req.body.userId }, post).then(result => {
+    if (result.n > 0) {
+      res.status(200).json({ message: "upvote successful!" });
+    } else {
+      res.status(401).json({ message: "Not successful upvoting" });
+    }
+
+  })
+  .catch(error => {
+    res.status(500).json({
+      message: "Oops something went wrong. Couldn't update post"
+    })
+  });
+};
+
