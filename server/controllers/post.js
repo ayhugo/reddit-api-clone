@@ -40,7 +40,7 @@ exports.getPosts = (req, res, next) => {
 };
 
 //bad practice to use req.body.userID but just for testing
-exports.vote = (req, res, next) => {
+exports.updatePost = (req, res, next) => {
   let votes = parseInt(req.body.upvotes);
   if(req.body.action === 'i') {
     votes += 1;

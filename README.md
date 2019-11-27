@@ -5,9 +5,5 @@
 - [x] create post 
 - [x] fetch all posts
 - [x] upvote a post
-- [ ] delete post 
-- [ ] edit post 
-- [ ] create comment 
-- [ ] delete comment 
-- [ ] edit comment 
-- [ ] can only post/del/edit if authenticated 
+- [x] delete post 
+- [x] edit post 
