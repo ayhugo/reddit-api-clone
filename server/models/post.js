@@ -1,10 +1,7 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
 
-mongoose.Promise = global.Promise;
-
-const postSchema = new Schema({
+const postSchema = mongoose.Schema({
     title: { type: String, required: true },
     link: String,
     text: String,
@@ -16,5 +13,4 @@ const postSchema = new Schema({
 
 // Write some encrption for Password
 
-const Post = mongoose.model('Post', postSchema);
-export default Post;
+module.exports = mongoose.model('Post', postSchema);

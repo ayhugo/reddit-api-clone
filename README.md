@@ -2,7 +2,7 @@
 
 ## Checklist
 - [x] create user 
-- [ ] encrypt pw 
+- [x] encrypt pw 
 - [ ] create post 
 - [ ] delete post 
 - [ ] edit post 
