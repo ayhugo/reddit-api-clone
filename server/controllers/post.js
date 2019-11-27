@@ -1,7 +1,7 @@
 const Post = require("../models/post");
 
 
-//shoudn't pass in suerId but just for testing
+//shoudn't pass in userId but just for testing
 exports.createPost = (req, res) => {
     const post = new Post({
         title: req.body.title,
@@ -18,5 +18,24 @@ exports.createPost = (req, res) => {
           message: err,
         });
       });
+};
+
+exports.getPosts = (req, res, next) => {
+  const postQuery = Post.find();
+  let fetchedPosts;
+  postQuery.then(documents => {
+    fetchedPosts = documents;
+    return Post.count();
+  }).then(count => {
+    res.status(200).json({
+      message: "Posts fetched successfully!",
+      posts: fetchedPosts,
+      maxPosts: count
+    });
+  }).catch( error => {
+    res.status(500).json({
+      message: "Fetching posts failed"
+    })
+  });
 };
 

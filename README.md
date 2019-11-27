@@ -1,9 +1,8 @@
-# My Attempt At A Reddit API Clone using MongoDB, express and Node
+# Simple Reddit API Clone using MongoDB, Express and Node
 
-## Checklist
-- [x] create user 
-- [x] encrypt pw 
-- [ ] create post 
+## Checklist for development
+- [x] create user w/ encryption
+- [x] create post 
 - [ ] delete post 
 - [ ] edit post 
 - [ ] create comment 

@@ -10,7 +10,7 @@ const postRoutes = require("./routes/post");
 mongoose.connect('mongodb://localhost:27017/redditclone').then(() => {
   console.log('Connected to mongodb...');
 }).catch(()=> {
-  console.log("connection failed");
+  console.log("connection faileed");
 });
 
 const app = express();
@@ -19,6 +19,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//routes
 app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes)
 
