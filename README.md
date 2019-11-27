@@ -3,6 +3,7 @@
 ## Checklist for development
 - [x] create user w/ encryption
 - [x] create post 
+- [x] fetch all posts
 - [ ] delete post 
 - [ ] edit post 
 - [ ] create comment 
