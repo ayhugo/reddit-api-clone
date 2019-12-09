@@ -7,15 +7,8 @@ const postSchema = mongoose.Schema({
     title: { type: String, required: true },
     text: {type: String, required: true },
     isDeleted: { type: Boolean, default: false},
-    
-    votes: {
-        positive: [{
-          type: String,
-        }],
-        negative: [{
-          type: String,
-        }]
-      },
+    positive: [{ type: String}],
+    negative: [{type: String }],
 });
 
 
