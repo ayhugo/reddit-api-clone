@@ -15,6 +15,9 @@ router.get("/getposts", PostController.getPosts);
 //edit post
 router.put('/update/:id', checkAuth, PostController.updatePost);
 
+//delete post
+router.delete('/delete/:id', checkAuth, PostController.deletePost);
+
 
 
 module.exports = router;

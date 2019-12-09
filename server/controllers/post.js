@@ -64,7 +64,7 @@ Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post).then(
 };
 
 exports.deletePost = (req, res, next) => {
-  Post.deleteOne({ _id: req.body.id, creator: req.body.userId }).then(result => {
+  Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(result => {
     if (result.n > 0) {
       res.status(200).json({ message: "Deletion successful!" });
     } else {
@@ -72,7 +72,7 @@ exports.deletePost = (req, res, next) => {
     }
   }).catch( error => {
     res.status(500).json({
-      message: "Fetching posts failed"
+      message: "Fetching post failed"
     })
   });
 };

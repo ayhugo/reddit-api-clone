@@ -8,14 +8,14 @@ const postSchema = mongoose.Schema({
     text: {type: String, required: true },
     isDeleted: { type: Boolean, default: false},
     
-    votes: [{
-        positive: {
+    votes: {
+        positive: [{
           type: String,
-        },
-        negative: {
+        }],
+        negative: [{
           type: String,
-        }
-      }],
+        }]
+      },
 });
 
 
