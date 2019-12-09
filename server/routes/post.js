@@ -1,20 +1,19 @@
 const express = require("express");
 
-const Post = require('../models/post');
 
 const PostController = require('../controllers/post');
-
+const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
 //create post
-router.post("", PostController.createPost);
+router.post("", checkAuth, PostController.createPost);
 
 //get posts
 router.get("/getposts", PostController.getPosts);
 
-//upvote post
-router.put('/:id/upvote', PostController.updatePost);
+//edit post
+router.put('/update/:id', checkAuth, PostController.updatePost);
 
 
 

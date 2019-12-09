@@ -2,11 +2,11 @@ const Post = require("../models/post");
 
 
 //shoudn't pass in userId but just for testing
-exports.createPost = (req, res) => {
-    const post = new Post({
+exports.createPost = (req, res) => { 
+  const post = new Post({
         title: req.body.title,
         text: req.body.text,
-        creator: req.body.userId
+        creator: req.userData.userId
     });
     post.save().then((newPost) => {
         res.status(200).json({
@@ -41,26 +41,20 @@ exports.getPosts = (req, res, next) => {
 
 //bad practice to use req.body.userID but just for testing
 exports.updatePost = (req, res, next) => {
-  let votes = parseInt(req.body.upvotes);
-  if(req.body.action === 'i') {
-    votes += 1;
-  }else if (req.body.action === 'd') {
-    votes -= 1;
-  }
   const post = new Post({
     _id: req.body.id,
     title: req.body.title,
-    text: req.body.text,
-    upvotes: votes,
-    creator: req.body.userId
+    text: req.body.content,
+    creator: req.userData.userId
   });
-  Post.updateOne({ _id: req.params.id, creator: req.body.userId }, post).then(result => {
-    if (result.n > 0) {
-      res.status(200).json({ message: "post update successful!" });
-    } else {
-      res.status(401).json({ message: "Not successful updating" });
-    }
 
+
+Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post).then(result => {
+  if (result.n > 0) {
+    res.status(200).json({ message: "post update successful!" });
+  } else {
+    res.status(401).json({ message: "Not successful updating" });
+  }
   })
   .catch(error => {
     res.status(500).json({
@@ -69,3 +63,16 @@ exports.updatePost = (req, res, next) => {
   });
 };
 
+exports.deletePost = (req, res, next) => {
+  Post.deleteOne({ _id: req.body.id, creator: req.body.userId }).then(result => {
+    if (result.n > 0) {
+      res.status(200).json({ message: "Deletion successful!" });
+    } else {
+      res.status(401).json({ message: "Not Authorized" });
+    }
+  }).catch( error => {
+    res.status(500).json({
+      message: "Fetching posts failed"
+    })
+  });
+};
